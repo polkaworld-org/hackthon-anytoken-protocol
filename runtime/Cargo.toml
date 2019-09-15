@@ -26,15 +26,21 @@ sudo = { package = "srml-sudo", git = "https://github.com/paritytech/substrate.g
 sr-primitives = { git = "https://github.com/paritytech/substrate.git", default_features = false }
 client = { package = "substrate-client", git = "https://github.com/paritytech/substrate.git", default_features = false }
 offchain-primitives = { package = "substrate-offchain-primitives", git = "https://github.com/paritytech/substrate.git", default-features = false }
+contracts = { package = "srml-contracts", git = "https://github.com/paritytech/substrate.git", default-features = false }
+node-primitives = { git = "https://github.com/paritytech/substrate.git", default-features = false }
 
 [build-dependencies]
 wasm-builder-runner = { package = "substrate-wasm-builder-runner", version = "1.0.2" }
 
 [features]
 default = ["std"]
+no_std = [
+	"contracts/core",
+]
 std = [
 	"codec/std",
 	"client/std",
+	"contracts/std",
 	"rstd/std",
 	"runtime-io/std",
 	"support/std",
@@ -54,5 +60,5 @@ std = [
 	"safe-mix/std",
 	"offchain-primitives/std",
 	"substrate-session/std",
+	"node-primitives/std",
 ]
-no_std = []
